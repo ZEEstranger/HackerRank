@@ -1,0 +1,11 @@
+SELECT [Doctor], [Professor], [Singer], [Actor]
+FROM (
+    SELECT OCCUPATION, NAME, ROW_NUMBER() OVER (PARTITION BY OCCUPATION ORDER BY NAME) AS NO
+    FROM OCCUPATIONS
+    ) AS T
+PIVOT
+(
+    MIN(NAME)
+    FOR OCCUPATION IN ([Doctor], [Professor], [Singer], [Actor])
+) AS PVT
+ORDER BY NO;

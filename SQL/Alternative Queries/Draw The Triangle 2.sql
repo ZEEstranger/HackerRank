@@ -1,0 +1,6 @@
+DECLARE @A INT = 1
+WHILE (@A < 21)
+BEGIN
+    PRINT REPLICATE ('* ', @A)
+    SET @A = @A + 1
+END
